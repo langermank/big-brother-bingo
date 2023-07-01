@@ -1,0 +1,120 @@
+---
+export interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+// This script runs at build time
+import data from '../data/bingo-items.json';
+
+// Randomly select 25 of the bingo items, ensuring the "free" item is included
+let bingoItems = [...data.bingoItems];
+const freeItemIndex = bingoItems.findIndex(item => item.name === 'Free Space');
+const freeItem = bingoItems[freeItemIndex];
+bingoItems.splice(freeItemIndex, 1);
+
+for(let i = bingoItems.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [bingoItems[i], bingoItems[j]] = [bingoItems[j], bingoItems[i]];
+}
+
+bingoItems = bingoItems.slice(0, 24);
+bingoItems.splice(12, 0, freeItem);
+---
+
+<bingo-card items={JSON.stringify(bingoItems)}></bingo-card>
+<!-- <ul>
+  {bingoItems.map(item => (
+    <li>
+      <label>{item.name}</label>
+      <input type="checkbox" />
+      <img src={item.link} alt="" />
+    </li>
+  ))}
+</ul> -->
+
+<script>
+	class BingoCard extends HTMLElement {
+    constructor() {
+        super();
+
+        // Initialize state
+        this.state = Array(5).fill(false).map(() => Array(5).fill(false));
+
+				// Create a shadow root
+        this.shadow = this.attachShadow({mode: 'open'});
+    }
+
+    connectedCallback() {
+    this.items = JSON.parse(this.getAttribute('items'));
+    this.render();
+
+    // Add event listeners to checkboxes
+    this.shadowRoot.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
+        checkbox.addEventListener('change', () => {
+            console.log('Checkbox changed');
+            this.check(index);
+        });
+    });
+}
+
+    render() {
+			console.log('hello')
+        this.shadow.innerHTML = `
+            <link rel="stylesheet" href="../public/BingoCard.css">
+            <ul>
+                ${this.items.map((item, index) =>
+                    `<li>
+                        <label>${item.name}</label>
+                        <input type="checkbox" data-index="${index}" />
+                        <img src="${item.link}" alt="" />
+                     </li>`
+                ).join('')}
+            </ul>
+        `;
+    }
+
+    check(index) {
+        const row = Math.floor(index / 5);
+        const col = index % 5;
+        this.state[row][col] = !this.state[row][col];
+        if (this.hasWon()) {
+            console.log('Bingo!');
+        }
+    }
+
+    hasWon() {
+// Check rows
+    if (this.state.some(row => row.every(Boolean))) {
+        console.log('Win by row');
+        return true;
+    }
+
+    // Check columns
+    for (let col = 0; col < 5; col++) {
+        if (this.state.every(row => row[col])) {
+            console.log('Win by column', col);
+            return true;
+        }
+    }
+
+    // Check diagonals
+    if (this.state.every((row, index) => row[index])) {
+        console.log('Win by diagonal (top left to bottom right)');
+        return true;
+    }
+
+    if (this.state.every((row, index) => row[4 - index])) {
+        console.log('Win by diagonal (top right to bottom left)');
+        return true;
+    }
+
+    console.log('No win');
+    return false;
+    }
+
+
+}
+
+customElements.define('bingo-card', BingoCard);
+</script>
