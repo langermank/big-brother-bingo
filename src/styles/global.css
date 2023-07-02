@@ -1,0 +1,104 @@
+/* the props */
+@import "open-props/style";
+
+/* optional imports that use the props */
+@import "open-props/normalize";
+
+:root {
+  /* size */
+  --size-4: 0.25rem;
+  --size-8: 0.5rem;
+  --size-12: 0.75rem;
+  --size-14: 0.875rem;
+  --size-16: 1rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+  --size-28: 1.75rem;
+  --size-32: 2rem;
+  --size-36: 2.25rem;
+  --size-40: 2.5rem;
+  --size-44: 2.75rem;
+  --size-48: 3rem;
+  --size-64: 4rem;
+  --size-80: 5rem;
+  --size-96: 6rem;
+  --size-112: 7rem;
+  --size-128: 8rem;
+  --size-220: 13.75rem;
+  --size-256: 16rem;
+  --size-280: 17.5rem;
+  --size-368: 23rem;
+
+  /* container */
+  --container-xxs-240: 15rem;
+  --container-xs-360: 22.5rem;
+  --container-sm-480: 30rem;
+  --container-md-768: 48rem;
+  --container-lg-1024: 64rem;
+  --container-xl-1440: 90rem;
+  --container-xxl-1920: 120rem;
+
+  /* border radius */
+  --border-radius-default: var(--size-4);
+  --border-radius-large: var(--size-12);
+
+  /* border */
+  --border-width-default: 1px;
+
+  /* controls */
+  --control-borderRadius: var(--border-radius-default);
+  --control-paddingInline-normal: var(--size-16);
+  --control-paddingInline-condensed: var(--size-12);
+  --control-gap-normal: var(--size-8);
+  --control-gap-spacious: var(--size-16);
+  --control-medium-fontSize: var(--size-16);
+  --control-medium-height: var(--size-44);
+  --control-small-fontSize: var(--size-14);
+  --control-small-height: var(--size-32);
+
+  /* layout */
+  --gap-condensed: var(--size-4);
+  --gap-normal: var(--size-8);
+  --gap-spacious: var(--size-16);
+  --padding-condensed: var(--size-4);
+  --padding-normal: var(--size-8);
+  --padding-spacious: var(--size-16);
+  --stack-gap-condensed: var(--size-8);
+  --stack-gap-normal: var(--size-16);
+  --stack-gap-spacious: var(--size-24);
+}
+
+html,
+body {
+  font-family: var(--font-family-regular);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  color: var(--text-default);
+  background: var(--bg-1);
+  padding: var(--padding-normal);
+}
+
+img {
+  border-radius: var(--border-radius-default);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}

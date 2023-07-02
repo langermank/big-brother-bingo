@@ -1,12 +1,50 @@
-ul {
+.BingoCard {
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(20%, 1fr));
+  /* height: 100%; */
 }
 
-li {
+.BingoCard--item {
+  aspect-ratio: 1;
+  overflow: hidden;
   border: solid 1px black;
   padding: 1rem;
   display: grid;
   place-content: center;
+  position: relative;
+}
+
+/* input[type="checkbox"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+} */
+
+input[type="checkbox"]::before {
+  height: 100%;
+  width: 100%;
+  content: "";
+  display: block;
+  background-color: orange;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }

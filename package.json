@@ -10,7 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.7.2"
+    "astro": "^2.7.2",
+    "open-props": "^1.5.10"
   },
   "devDependencies": {
     "prettier": "2.8.8"

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BingoCard from "../components/BingoCard.astro";
+import "../styles/global.css";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -8,17 +9,4 @@ import BingoCard from "../components/BingoCard.astro";
     <h1>Big Brother Bingo</h1>
     <BingoCard />
   </main>
-
-  <style>
-    main {
-      margin: auto;
-      padding: 1.5rem;
-      max-width: 60ch;
-    }
-    h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 0;
-    }
-  </style>
 </Layout>
