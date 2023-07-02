@@ -4,6 +4,8 @@
 /* optional imports that use the props */
 @import "open-props/normalize";
 
+@import "open-props/colors-hsl";
+
 :root {
   /* size */
   --size-4: 0.25rem;
@@ -66,20 +68,37 @@
   --stack-gap-condensed: var(--size-8);
   --stack-gap-normal: var(--size-16);
   --stack-gap-spacious: var(--size-24);
+
+  /* theme */
+  --bgColor-page: var(--gray-0);
+  --bgColor-cardItem-rest: var(--gray-0);
+  --bgColor-cardItem-hover: var(--red-2);
+  --bgColor-cardItem-pressed: var(--gray-1);
+  --borderColor-card: var(--red-7);
+  --outlineColor: var(--indigo-9);
+  --textColor-page: var(--gray-10);
+  --textColor-cardItem-rest: var(--gray-10);
+
+  /* chip colors */
+  --bgColor-chip-1: hsl(var(--purple-5-hsl) / 70%);
+  --bgColor-chip-1: hsl(var(--indigo-6-hsl) / 70%);
+  --bgColor-chip-1: hsl(var(--lime-6-hsl) / 70%);
+  --bgColor-chip-1: hsl(var(--yellow-4-hsl) / 70%);
+  --bgColor-chip-1: hsl(var(--orange-6-hsl) / 70%);
+  --bgColor-chip-1: hsl(var(--pink-5-hsl) / 70%);
+  --bgColor-chip-1: hsl(var(--red-7-hsl) / 70%);
 }
 
 html,
 body {
-  font-family: var(--font-family-regular);
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
-  color: var(--text-default);
-  background: var(--bg-1);
+  font-family: var(--font-sans);
+  color: var(--textColor-page);
+  background: var(--bgColor-page);
   padding: var(--padding-normal);
 }
 
-img {
-  border-radius: var(--border-radius-default);
+h1 {
+  color: var(--textColor-page);
 }
 
 ul {
@@ -101,4 +120,28 @@ li {
   position: absolute;
   width: 1px;
   white-space: nowrap;
+}
+
+body {
+  display: grid;
+  max-width: var(--container-md-768);
+  margin-inline: auto;
+}
+
+@media (width >= 1440px) {
+  body {
+    max-width: var(--container-lg-1024);
+  }
+}
+
+html.dark {
+  /* theme */
+  --bgColor-page: var(--gray-9);
+  --bgColor-cardItem-rest: var(--gray-8);
+  --bgColor-cardItem-hover: var(--red-2);
+  --bgColor-cardItem-pressed: var(--gray-7);
+  --borderColor-card: var(--red-8);
+  --outlineColor: var(--indigo-4);
+  --textColor-page: var(--gray-1);
+  --textColor-cardItem-rest: var(--gray-0);
 }

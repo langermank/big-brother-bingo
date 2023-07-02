@@ -25,7 +25,8 @@ bingoItems = bingoItems.slice(0, 24);
 bingoItems.splice(12, 0, freeItem);
 ---
 
-<bingo-card items={JSON.stringify(bingoItems)}></bingo-card>
+<bingo-card items={JSON.stringify(bingoItems)} style="display: block;"
+></bingo-card>
 
 <script>
   class BingoCard extends HTMLElement {
@@ -49,7 +50,7 @@ bingoItems.splice(12, 0, freeItem);
       this.items = items ? JSON.parse(items) : [];
       // this.items = JSON.parse(this.getAttribute("items"));
       this.innerHTML = `
-        <table role="grid">
+        <table role="grid" class="BingoCard">
           <tbody>
             ${this.items
               .reduce(
@@ -62,14 +63,14 @@ bingoItems.splice(12, 0, freeItem);
 
                   rows[rows.length - 1].push(`
                   <td role="gridcell">
-                    <button tabindex="${
+                    <button class="BingoCard--button" tabindex="${
                       index === 0 ? "0" : "-1"
                     }" aria-pressed="${
                     index === 12
                       ? true
                       : this.state[Math.floor(index / 5)][index % 5]
                   }" id="${id}" ${index === 12 ? "disabled" : ""}>
-                      ${item.name}
+                      <span>${item.name}</span>
                     </button>
                   </td>`);
 
