@@ -4,6 +4,7 @@ export interface Props {
   body: string;
   href: string;
 }
+import "../styles/BingoCard.css";
 // This script runs at build time
 import data from "../data/bingo-items.json";
 
@@ -28,31 +29,9 @@ bingoItems.splice(12, 0, freeItem);
 
 <script>
   class BingoCard extends HTMLElement {
-    // constructor() {
-    //   super();
-
-    //   // Initialize state
-    //   this.state = Array(5)
-    //     .fill(false)
-    //     .map(() => Array(5).fill(false));
-
-    //   // Create a shadow root
-    //   this.shadow = this.attachShadow({ mode: "open" });
-    // }
-
-    // connectedCallback() {
-    //   this.items = JSON.parse(this.getAttribute("items"));
-    //   this.render();
-
-    //   // Add event listeners to buttons
-    //   this.shadowRoot.querySelectorAll("button").forEach((button, index) => {
-    //     button.addEventListener("click", () => {
-    //       console.log("Button clicked");
-    //       this.check(index);
-    //     });
-    //   });
-    // }
-
+    state: any[][];
+    items: any;
+    buttons: HTMLButtonElement[] = [];
     constructor() {
       super();
 
@@ -61,16 +40,52 @@ bingoItems.splice(12, 0, freeItem);
         .fill(false)
         .map(() => Array(5).fill(false));
 
-      // Create a shadow root
-      this.shadow = this.attachShadow({ mode: "open" });
+      // Set the "free space" state to true
+      this.state[Math.floor(12 / 5)][12 % 5] = true;
     }
 
     connectedCallback() {
-      this.items = JSON.parse(this.getAttribute("items"));
+      const items = this.getAttribute("items");
+      this.items = items ? JSON.parse(items) : [];
+      // this.items = JSON.parse(this.getAttribute("items"));
+      this.innerHTML = `
+        <table role="grid">
+          <tbody>
+            ${this.items
+              .reduce(
+                (rows: string[][], item: { name: string }, index: number) => {
+                  const id = item.name.toLowerCase().split(" ").join("-");
+
+                  if (index % 5 === 0) {
+                    rows.push([]);
+                  }
+
+                  rows[rows.length - 1].push(`
+                  <td role="gridcell">
+                    <button tabindex="${
+                      index === 0 ? "0" : "-1"
+                    }" aria-pressed="${
+                    index === 12
+                      ? true
+                      : this.state[Math.floor(index / 5)][index % 5]
+                  }" id="${id}" ${index === 12 ? "disabled" : ""}>
+                      ${item.name}
+                    </button>
+                  </td>`);
+
+                  return rows;
+                },
+                []
+              )
+              .map((row: any[]) => `<tr role="row">${row.join("")}</tr>`)
+              .join("")}
+          </tbody>
+        </table>
+      `;
       this.render();
 
       // Add event listeners to buttons
-      this.buttons = Array.from(this.shadowRoot.querySelectorAll("button"));
+      this.buttons = Array.from(this.querySelectorAll("button"));
       this.buttons.forEach((button, index) => {
         button.addEventListener("click", () => {
           console.log("Button clicked");
@@ -83,7 +98,7 @@ bingoItems.splice(12, 0, freeItem);
       });
     }
 
-    handleKeydown(event, index) {
+    handleKeydown(event: KeyboardEvent, index: number) {
       let newIndex;
       switch (event.key) {
         case "ArrowRight":
@@ -107,120 +122,16 @@ bingoItems.splice(12, 0, freeItem);
     }
 
     render() {
-      this.shadow.innerHTML = `
-            <link rel="stylesheet" href="../public/BingoCard.css">
-            <style>
-              .BingoCard {
-                margin: 0;
-                padding: 0;
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-                grid-template-rows: repeat(auto-fill, minmax(20%, 1fr));
-                /* height: 100%; */
-              }
-
-              tr[role="row"] {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                grid-template-rows: 1fr;
-                gap: 0px 2px
-              }
-
-              table {
-                border-collapse: collapse;
-                width: 100%;
-                height: 100%;
-              }
-
-              td[role="gridcell"] {
-                aspect-ratio: 1;
-                display: grid;
-                place-content: center;
-                background-color: var(--stone-1);
-              }
-
-              tbody {
-                background: deeppink;
-                display: grid;
-                grid-template-rows: repeat(5, max-content);
-                grid-row-gap: 2px;
-                padding: 1rem;
-              }
-
-              .BingoCard--item {
-                aspect-ratio: 1;
-                overflow: hidden;
-                border: solid 1px black;
-                padding: 1rem;
-                display: grid;
-                place-content: center;
-                position: relative;
-              }
-
-              button[aria-pressed="true"] {
-                background-color: var(--stone-6);
-              }
-
-              input[type="checkbox"]::before {
-                height: 100%;
-                width: 100%;
-                content: "";
-                display: block;
-                background-color: var(--stone-6);
-              }
-
-              input[type="checkbox"] {
-                /* remove the checkbox from the page flow, positioning it on top of the SVG */
-                position: absolute;
-                /* set same dimensions as the SVG */
-                width: 100%;
-                height: 100%;
-                /* hide it */
-                opacity: 0.00001;
-              }
-            </style>
-            <table role="grid">
-                <tbody>
-                ${this.items
-                  .reduce((rows, item, index) => {
-                    const id = item.name.toLowerCase().split(" ").join("-");
-
-                    if (index % 5 === 0) {
-                      rows.push([]);
-                    }
-
-                    rows[rows.length - 1].push(`
-                      <td role="gridcell">
-                        <button tabindex="${
-                          index === 0 ? "0" : "-1"
-                        }" aria-pressed="${
-                      index === 12
-                        ? true
-                        : this.state[Math.floor(index / 5)][index % 5]
-                    }" id="${id}" ${index === 12 ? "disabled" : ""}>
-                          ${item.name}
-                        </button>
-                      </td>`);
-
-                    return rows;
-                  }, [])
-                  .map((row) => `<tr role="row">${row.join("")}</tr>`)
-                  .join("")}
-                </tbody>
-            </table>
-        `;
+      this.buttons = Array.from(this.querySelectorAll("button"));
+      this.buttons.forEach((button, index) => {
+        button.setAttribute(
+          "aria-pressed",
+          index === 12 ? true : this.state[Math.floor(index / 5)][index % 5]
+        );
+      });
     }
 
-    // check(index) {
-    //   const row = Math.floor(index / 5);
-    //   const col = index % 5;
-    //   this.state[row][col] = !this.state[row][col];
-    //   if (this.hasWon()) {
-    //     console.log("Bingo!");
-    //   }
-    // }
-
-    check(index) {
+    check(index: number) {
       const row = Math.floor(index / 5);
       const col = index % 5;
 
@@ -228,14 +139,6 @@ bingoItems.splice(12, 0, freeItem);
       if (index !== 12) {
         this.state[row][col] = !this.state[row][col];
         this.render();
-
-        // Add event listeners to buttons after re-rendering
-        this.shadowRoot.querySelectorAll("button").forEach((button, index) => {
-          button.addEventListener("click", () => {
-            console.log("Button clicked");
-            this.check(index);
-          });
-        });
       }
 
       if (this.hasWon()) {
