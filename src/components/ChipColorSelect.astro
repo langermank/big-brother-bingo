@@ -1,0 +1,27 @@
+---
+---
+
+<form>
+  <div class="SelectWrap">
+    <select id="colorSelect" class="Select">
+      <option value="--bgColor-chip-1">Purple</option>
+      <option value="--bgColor-chip-2">Blue</option>
+      <option value="--bgColor-chip-3">Green</option>
+      <option value="--bgColor-chip-4">Yellow</option>
+      <option value="--bgColor-chip-5">Orange</option>
+      <option value="--bgColor-chip-6">Pink</option>
+      <option value="--bgColor-chip-7">Red</option>
+    </select>
+  </div>
+</form>
+
+<script>
+  document
+    .getElementById("colorSelect")
+    .addEventListener("change", function (e) {
+      document.documentElement.style.setProperty(
+        "--bgColor-chip",
+        `var(${e.target.value})`
+      );
+    });
+</script>

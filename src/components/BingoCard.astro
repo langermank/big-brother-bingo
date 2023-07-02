@@ -51,6 +51,11 @@ bingoItems.splice(12, 0, freeItem);
       // this.items = JSON.parse(this.getAttribute("items"));
       this.innerHTML = `
         <table role="grid" class="BingoCard">
+          <thead>
+            <tr>
+              <th><h1>Big Brother Bingo</h1></th>
+            </tr>
+          </thead>
           <tbody>
             ${this.items
               .reduce(

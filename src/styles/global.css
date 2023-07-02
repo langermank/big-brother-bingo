@@ -42,10 +42,10 @@
 
   /* border radius */
   --border-radius-default: var(--size-4);
-  --border-radius-large: var(--size-12);
+  --border-radius-large: var(--size-20);
 
   /* border */
-  --border-width-default: 1px;
+  --border-width-default: 2px;
 
   /* controls */
   --control-borderRadius: var(--border-radius-default);
@@ -57,6 +57,7 @@
   --control-medium-height: var(--size-44);
   --control-small-fontSize: var(--size-14);
   --control-small-height: var(--size-32);
+  --control-fontWeight: var(--font-weight-6);
 
   /* layout */
   --gap-condensed: var(--size-4);
@@ -65,28 +66,33 @@
   --padding-condensed: var(--size-4);
   --padding-normal: var(--size-8);
   --padding-spacious: var(--size-16);
-  --stack-gap-condensed: var(--size-8);
-  --stack-gap-normal: var(--size-16);
-  --stack-gap-spacious: var(--size-24);
+  --card-border-padding: var(--size-4);
 
   /* theme */
   --bgColor-page: var(--gray-0);
-  --bgColor-cardItem-rest: var(--gray-0);
+  --bgColor-cardItem-rest: #ffffff;
   --bgColor-cardItem-hover: var(--red-2);
   --bgColor-cardItem-pressed: var(--gray-1);
-  --borderColor-card: var(--red-7);
+  --borderColor-card: var(--gray-9);
   --outlineColor: var(--indigo-9);
   --textColor-page: var(--gray-10);
+  --textColor-card: var(--gray-0);
   --textColor-cardItem-rest: var(--gray-10);
+  --control-bgColor-rest: #ffffff;
+  --control-bgColor-hover: var(--gray-0);
+  --control-bgColor-pressed: var(--gray-3);
+  --control-borderColor-rest: var(--gray-9);
+  --control-textColor-rest: var(--gray-9);
 
   /* chip colors */
   --bgColor-chip-1: hsl(var(--purple-5-hsl) / 70%);
-  --bgColor-chip-1: hsl(var(--indigo-6-hsl) / 70%);
-  --bgColor-chip-1: hsl(var(--lime-6-hsl) / 70%);
-  --bgColor-chip-1: hsl(var(--yellow-4-hsl) / 70%);
-  --bgColor-chip-1: hsl(var(--orange-6-hsl) / 70%);
-  --bgColor-chip-1: hsl(var(--pink-5-hsl) / 70%);
-  --bgColor-chip-1: hsl(var(--red-7-hsl) / 70%);
+  --bgColor-chip-2: hsl(var(--indigo-6-hsl) / 70%);
+  --bgColor-chip-3: hsl(var(--lime-6-hsl) / 70%);
+  --bgColor-chip-4: hsl(var(--yellow-4-hsl) / 70%);
+  --bgColor-chip-5: hsl(var(--orange-6-hsl) / 70%);
+  --bgColor-chip-6: hsl(var(--pink-5-hsl) / 70%);
+  --bgColor-chip-7: hsl(var(--red-7-hsl) / 70%);
+  --bgColor-chip: var(--bgColor-chip-1);
 }
 
 html,
@@ -98,7 +104,9 @@ body {
 }
 
 h1 {
-  color: var(--textColor-page);
+  color: var(--textColor-card);
+  font-size: var(--font-size-fluid-2);
+  max-inline-size: unset;
 }
 
 ul {
@@ -108,6 +116,77 @@ ul {
 
 li {
   list-style: none;
+}
+
+.Button,
+.Select {
+  height: var(--control-medium-height);
+  padding-inline: var(--control-paddingInline-normal);
+  padding-block: 0;
+  border-radius: var(--control-borderRadius);
+  border: var(--border-width-default) solid var(--control-borderColor-rest);
+  background: var(--control-bgColor-rest);
+  color: var(--control-textColor-rest);
+  box-shadow: inset 0px -1px 0px var(--control-borderColor-rest);
+  font-weight: var(--control-fontWeight);
+}
+
+.Button:hover,
+.Select:hover {
+  background: var(--control-bgColor-hover);
+}
+
+.Button:active,
+.Select:active {
+  background: var(--control-bgColor-active);
+  box-shadow: unset;
+}
+
+.Select {
+  appearance: none;
+  grid-column: 1/-1;
+  grid-row: 1;
+  padding-inline-end: calc(
+    var(--control-paddingInline-normal) + var(--size-14)
+  );
+}
+
+.SelectWrap {
+  display: grid;
+  grid-template-columns: minmax(0, auto) var(--size-16);
+}
+
+.SelectWrap::after {
+  width: var(--size-16);
+  height: var(--size-16);
+  margin-inline-end: var(--size-14);
+  pointer-events: none;
+  content: "";
+  background-color: var(--control-textColor-rest);
+  -webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=");
+  mask: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  grid-column: 2;
+  grid-row: 1;
+  place-self: center end;
+}
+
+.Button--iconOnly {
+  width: var(--control-medium-height);
+  padding-inline: unset;
+  display: grid;
+  place-items: center;
+}
+
+.ControlWrap {
+  display: flex;
+  flex-direction: row;
+  gap: var(--control-gap-normal);
+  place-self: end;
+  margin-block-end: calc(var(--gap-spacious) * 2);
 }
 
 .visuallyHidden {
@@ -126,6 +205,18 @@ body {
   display: grid;
   max-width: var(--container-md-768);
   margin-inline: auto;
+}
+
+main {
+  display: grid;
+  gap: var(--gap-spacious);
+  grid-auto-rows: min-content;
+}
+
+@media (width >= 768px) {
+  :root {
+    --card-border-padding: var(--size-16);
+  }
 }
 
 @media (width >= 1440px) {
