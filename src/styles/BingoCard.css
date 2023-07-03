@@ -43,7 +43,6 @@ tbody {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   place-items: center;
-  /* border-radius: var(--border-radius-large); */
 }
 
 tr[role="row"]:first-of-type
@@ -105,6 +104,19 @@ tr[role="row"]:last-of-type
   grid-row: 1/-1;
   grid-column: 1/-1;
   aspect-ratio: 1;
+}
+
+.FreeSpace .BingoCard--label {
+  place-self: start center;
+  padding-block-start: var(--size-8);
+}
+
+.FreeSpace .fa-solid {
+  font-size: var(--font-size-fluid-3);
+}
+
+.FreeSpace::after {
+  display: none;
 }
 
 /* .BingoCard::after {

@@ -142,6 +142,12 @@ li {
   box-shadow: unset;
 }
 
+.Button--trailingVisual {
+  display: flex;
+  gap: var(--control-gap-normal);
+  align-items: center;
+}
+
 .Select {
   appearance: none;
   grid-column: 1/-1;
@@ -179,6 +185,7 @@ li {
   padding-inline: unset;
   display: grid;
   place-items: center;
+  font-size: var(--size-20);
 }
 
 .ControlWrap {

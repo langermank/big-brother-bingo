@@ -61,6 +61,7 @@ bingoItems.splice(12, 0, freeItem);
               .reduce(
                 (rows: string[][], item: { name: string }, index: number) => {
                   const id = item.name.toLowerCase().split(" ").join("-");
+                  const freeSpace = index === 12;
 
                   if (index % 5 === 0) {
                     rows.push([]);
@@ -68,14 +69,18 @@ bingoItems.splice(12, 0, freeItem);
 
                   rows[rows.length - 1].push(`
                   <td role="gridcell">
-                    <button class="BingoCard--button" tabindex="${
-                      index === 0 ? "0" : "-1"
-                    }" aria-pressed="${
-                    index === 12
+                    <button class="BingoCard--button ${
+                      freeSpace ? `FreeSpace` : ""
+                    }" tabindex="${index === 0 ? "0" : "-1"}" aria-pressed="${
+                    freeSpace
                       ? true
                       : this.state[Math.floor(index / 5)][index % 5]
                   }" id="${id}" ${index === 12 ? "disabled" : ""}>
-                      <span>${item.name}</span>
+                      ${
+                        freeSpace
+                          ? `<span class="BingoCard--label">${item.name}</span><span class="fa-solid fa-star"></span>`
+                          : `<span>${item.name}</span>`
+                      }
                     </button>
                   </td>`);
 

@@ -9,7 +9,10 @@ import "../styles/global.css";
 <Layout title="Welcome to Astro.">
   <main>
     <div class="ControlWrap">
-      <button class="Button">New board</button>
+      <button class="Button Button--trailingVisual">
+        <span>New board</span>
+        <span class="fa-solid fa-rotate-right fa-rotate-270"></span>
+      </button>
       <ChipColorSelect />
       <ThemeIcon />
     </div>
