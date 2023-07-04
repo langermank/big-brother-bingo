@@ -73,11 +73,13 @@
   --bgColor-cardItem-rest: #ffffff;
   --bgColor-cardItem-hover: var(--red-2);
   --bgColor-cardItem-pressed: var(--gray-1);
+  --bgColor-freeSpace-icon: var(--purple-7);
   --borderColor-card: var(--gray-9);
   --outlineColor: var(--indigo-9);
   --textColor-page: var(--gray-10);
   --textColor-card: var(--gray-0);
   --textColor-cardItem-rest: var(--gray-10);
+  --textColor-freeSpace: var(--gray-0);
   --control-bgColor-rest: #ffffff;
   --control-bgColor-hover: var(--gray-0);
   --control-bgColor-pressed: var(--gray-3);
@@ -146,6 +148,11 @@ li {
   display: flex;
   gap: var(--control-gap-normal);
   align-items: center;
+  white-space: nowrap;
+}
+
+.Button--trailingVisual span:last-child {
+  display: none;
 }
 
 .Select {
@@ -189,8 +196,8 @@ li {
 }
 
 .ControlWrap {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-auto-flow: column;
   gap: var(--control-gap-normal);
   place-self: end;
   margin-block-end: calc(var(--gap-spacious) * 2);
@@ -220,6 +227,18 @@ main {
   grid-auto-rows: min-content;
 }
 
+.icon::before {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (width >= 480px) {
+  .Button--trailingVisual span:last-child {
+    display: block;
+  }
+}
+
 @media (width >= 768px) {
   :root {
     --card-border-padding: var(--size-16);
@@ -237,9 +256,16 @@ html.dark {
   --bgColor-page: var(--gray-9);
   --bgColor-cardItem-rest: var(--gray-8);
   --bgColor-cardItem-hover: var(--red-2);
-  --bgColor-cardItem-pressed: var(--gray-7);
-  --borderColor-card: var(--red-8);
+  --bgColor-cardItem-pressed: var(--gray-9);
+  --borderColor-card: var(--gray-7);
   --outlineColor: var(--indigo-4);
   --textColor-page: var(--gray-1);
   --textColor-cardItem-rest: var(--gray-0);
+  --textColor-card: var(--gray-1);
+  --bgColor-freeSpace-icon: var(--purple-9);
+  --control-bgColor-rest: var(--gray-9);
+  --control-bgColor-hover: var(--gray-8);
+  --control-bgColor-pressed: var(--gray-3);
+  --control-borderColor-rest: var(--gray-1);
+  --control-textColor-rest: var(--gray-0);
 }

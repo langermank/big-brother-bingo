@@ -77,7 +77,7 @@ tr[role="row"]:last-of-type
   );
 }
 
-.BingoCard--button span {
+.BingoCard--button .BingoCard--label {
   grid-row: 1/-1;
   grid-column: 1/-1;
   color: var(--textColor-cardItem-rest);
@@ -106,17 +106,33 @@ tr[role="row"]:last-of-type
   aspect-ratio: 1;
 }
 
-.FreeSpace .BingoCard--label {
-  place-self: start center;
-  padding-block-start: var(--size-8);
+.FreeSpace {
+  padding-inline: var(--padding-condensed);
 }
 
-.FreeSpace .fa-solid {
-  font-size: var(--font-size-fluid-3);
+.FreeSpace .BingoCard--label {
+  color: var(--textColor-freeSpace);
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  font-weight: var(--font-weight-6);
+}
+
+.FreeSpace svg {
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  inline-size: 8rem;
+  fill: var(--bgColor-freeSpace-icon);
 }
 
 .FreeSpace::after {
   display: none;
+}
+
+.FreeSpace--iconGroup {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
 }
 
 /* .BingoCard::after {
@@ -136,5 +152,9 @@ tr[role="row"]:last-of-type
 @media (width >= 768px) {
   body {
     max-width: var(--container-lg-1024);
+  }
+
+  .FreeSpace {
+    padding-inline: var(--padding-spacious);
   }
 }
