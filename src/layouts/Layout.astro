@@ -1,19 +1,30 @@
 ---
 export interface Props {
   title: string;
+  ogImage?: string;
 }
 
-const { title } = Astro.props;
+const { title, ogImage = "/default-og.png" } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL("/public/og-default.png", Astro.url);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Big Brother live feeds bingo" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:description" content="Big Brother live feeds bingo" />
+    <meta property="og:locale" content="en_GB" />
     <title>{title}</title>
     <script
       src="https://kit.fontawesome.com/62c445cffb.js"

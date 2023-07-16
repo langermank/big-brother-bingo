@@ -6,6 +6,22 @@
 
 @import "open-props/colors-hsl";
 
+@font-face {
+  font-family: "Bungee";
+  src: url("/fonts/Bungee-Regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Condensed";
+  src: url("/fonts/RobotoCondensed-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* size */
   --size-4: 0.25rem;
@@ -68,6 +84,11 @@
   --padding-spacious: var(--size-16);
   --card-border-padding: var(--size-4);
 
+  /* typography */
+
+  --font-heading: "Bungee", var(--font-sans);
+  --font-body: "Roboto Condensed", var(--font-sans);
+
   /* theme */
   --bgColor-page: var(--gray-0);
   --bgColor-cardItem-rest: #ffffff;
@@ -99,7 +120,7 @@
 
 html,
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   color: var(--textColor-page);
   background: var(--bgColor-page);
   padding: var(--padding-normal);
@@ -109,6 +130,8 @@ h1 {
   color: var(--textColor-card);
   font-size: var(--font-size-fluid-2);
   max-inline-size: unset;
+  font-family: var(--font-heading);
+  letter-spacing: 0.025em;
 }
 
 ul {
