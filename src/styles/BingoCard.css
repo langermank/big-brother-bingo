@@ -115,6 +115,7 @@ tr[role="row"]:last-of-type
   grid-column: 1/-1;
   grid-row: 1/-1;
   font-weight: var(--font-weight-6);
+  z-index: 1;
 }
 
 .FreeSpace svg {
@@ -122,6 +123,10 @@ tr[role="row"]:last-of-type
   grid-row: 1/-1;
   inline-size: 8rem;
   fill: var(--bgColor-freeSpace-icon);
+  animation: var(--animation-spin);
+  animation-timing-function: var(--ease-elastic-3);
+  animation-duration: 2s;
+  animation-iteration-count: 1;
 }
 
 .FreeSpace::after {

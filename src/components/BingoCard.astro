@@ -29,6 +29,8 @@ bingoItems.splice(12, 0, freeItem);
 ></bingo-card>
 
 <script>
+  import confetti from "canvas-confetti";
+
   class BingoCard extends HTMLElement {
     state: any[][];
     items: any;
@@ -142,6 +144,20 @@ bingoItems.splice(12, 0, freeItem);
       });
     }
 
+    hasConfettiShown: boolean = false;
+
+    createConfetti() {
+      if (!this.hasConfettiShown) {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          disableForReducedMotion: true,
+        });
+        this.hasConfettiShown = true;
+      }
+    }
+
     check(index: number) {
       const row = Math.floor(index / 5);
       const col = index % 5;
@@ -153,21 +169,20 @@ bingoItems.splice(12, 0, freeItem);
       }
 
       if (this.hasWon()) {
-        console.log("Bingo!");
       }
     }
 
     hasWon() {
       // Check rows
       if (this.state.some((row) => row.every(Boolean))) {
-        console.log("Win by row");
+        this.createConfetti();
         return true;
       }
 
       // Check columns
       for (let col = 0; col < 5; col++) {
         if (this.state.every((row) => row[col])) {
-          console.log("Win by column", col);
+          this.createConfetti();
           return true;
         }
       }
@@ -175,11 +190,13 @@ bingoItems.splice(12, 0, freeItem);
       // Check diagonals
       if (this.state.every((row, index) => row[index])) {
         console.log("Win by diagonal (top left to bottom right)");
+        this.createConfetti();
         return true;
       }
 
       if (this.state.every((row, index) => row[4 - index])) {
         console.log("Win by diagonal (top right to bottom left)");
+        this.createConfetti();
         return true;
       }
 

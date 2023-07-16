@@ -1,7 +1,7 @@
 ---
 ---
 
-<form>
+<!-- <form>
   <div class="SelectWrap">
     <select id="colorSelect" class="Select">
       <option value="--bgColor-chip-1">Purple</option>
@@ -13,15 +13,53 @@
       <option value="--bgColor-chip-7">Red</option>
     </select>
   </div>
-</form>
-
+</form> -->
 <script>
-  document
-    .getElementById("colorSelect")
-    .addEventListener("change", function (e) {
-      document.documentElement.style.setProperty(
-        "--bgColor-chip",
-        `var(${e.target.value})`
-      );
-    });
+  //   document
+  //     .getElementById("colorSelect")
+  //     .addEventListener("change", function (e) {
+  //       document.documentElement.style.setProperty(
+  //         "--bgColor-chip",
+  //         `var(${e.target.value})`
+  //       );
+  //     });
+
+  const colors = [
+    "--bgColor-chip-1",
+    "--bgColor-chip-2",
+    "--bgColor-chip-3",
+    "--bgColor-chip-4",
+    "--bgColor-chip-5",
+    "--bgColor-chip-6",
+    "--bgColor-chip-7",
+  ];
+
+  window.addEventListener("DOMContentLoaded", (event) => {
+    // Select a random color
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    // Set the color
+    document.documentElement.style.setProperty(
+      "--bgColor-chip",
+      `var(${randomColor})`
+    );
+    document.documentElement.style.setProperty(
+      "--bgColor-freeSpace-icon",
+      `var(${randomColor})`
+    );
+
+    // Set up the event listener
+    document
+      .getElementById("colorSelect")
+      .addEventListener("change", function (e) {
+        document.documentElement.style.setProperty(
+          "--bgColor-chip",
+          `var(${e.target.value})`
+        );
+        document.documentElement.style.setProperty(
+          "--bgColor-freeSpace-icon",
+          `var(${e.target.value})`
+        );
+      });
+  });
 </script>
