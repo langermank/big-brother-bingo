@@ -79,7 +79,7 @@
   --textColor-page: var(--gray-10);
   --textColor-card: var(--gray-0);
   --textColor-cardItem-rest: var(--gray-10);
-  --textColor-freeSpace: var(--gray-0);
+  --textColor-freeSpace: var(--gray-9);
   --control-bgColor-rest: #ffffff;
   --control-bgColor-hover: var(--gray-0);
   --control-bgColor-pressed: var(--gray-3);
@@ -262,12 +262,16 @@ html.dark {
   --textColor-page: var(--gray-1);
   --textColor-cardItem-rest: var(--gray-0);
   --textColor-card: var(--gray-1);
+  --textColor-freeSpace: var(--gray-0);
   --bgColor-freeSpace-icon: var(--purple-9);
   --control-bgColor-rest: var(--gray-9);
   --control-bgColor-hover: var(--gray-8);
   --control-bgColor-pressed: var(--gray-3);
   --control-borderColor-rest: var(--gray-1);
   --control-textColor-rest: var(--gray-0);
+  --bgColor-chip-3: hsl(var(--lime-9-hsl) / 70%);
+  --bgColor-chip-4: hsl(var(--teal-8-hsl) / 70%);
+  --bgColor-chip-5: hsl(var(--orange-7-hsl) / 70%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -279,10 +283,14 @@ html.dark {
   --textColor-page: var(--gray-1);
   --textColor-cardItem-rest: var(--gray-0);
   --textColor-card: var(--gray-1);
+  --textColor-freeSpace: var(--gray-0);
   --bgColor-freeSpace-icon: var(--purple-9);
   --control-bgColor-rest: var(--gray-9);
   --control-bgColor-hover: var(--gray-8);
   --control-bgColor-pressed: var(--gray-3);
   --control-borderColor-rest: var(--gray-1);
   --control-textColor-rest: var(--gray-0);
+  --bgColor-chip-3: hsl(var(--lime-9-hsl) / 70%);
+  --bgColor-chip-4: hsl(var(--teal-8-hsl) / 70%);
+  --bgColor-chip-5: hsl(var(--orange-7-hsl) / 70%);
 }

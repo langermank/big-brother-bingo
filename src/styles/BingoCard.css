@@ -14,6 +14,7 @@ table {
   background: var(--borderColor-card);
   border-radius: var(--border-radius-large);
   box-shadow: var(--shadow-3);
+  container-name: bingocard;
 }
 
 td[role="gridcell"] {
@@ -110,19 +111,21 @@ tr[role="row"]:last-of-type
   padding-inline: var(--padding-condensed);
 }
 
-.FreeSpace .BingoCard--label {
-  color: var(--textColor-freeSpace);
-  grid-column: 1/-1;
-  grid-row: 1/-1;
-  font-weight: var(--font-weight-6);
-  z-index: 1;
+.FreeSpace {
+  & .BingoCard--label {
+    color: var(--textColor-freeSpace);
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    font-weight: var(--font-weight-6);
+    z-index: 1;
+  }
 }
 
 .FreeSpace svg {
   grid-column: 1/-1;
   grid-row: 1/-1;
   inline-size: 8rem;
-  fill: var(--bgColor-freeSpace-icon);
+  fill: var(--bgColor-chip);
   animation: var(--animation-spin);
   animation-timing-function: var(--ease-elastic-3);
   animation-duration: 2s;

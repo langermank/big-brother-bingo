@@ -48,6 +48,24 @@ bingoItems.splice(12, 0, freeItem);
     }
 
     connectedCallback() {
+      const colors = [
+        "--bgColor-chip-1",
+        "--bgColor-chip-2",
+        "--bgColor-chip-3",
+        "--bgColor-chip-4",
+        "--bgColor-chip-5",
+        "--bgColor-chip-6",
+        "--bgColor-chip-7",
+      ];
+
+      // Select a random color
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+      // Set the color
+      document.documentElement.style.setProperty(
+        "--bgColor-chip",
+        `var(${randomColor})`
+      );
       const items = this.getAttribute("items");
       this.items = items ? JSON.parse(items) : [];
       // this.items = JSON.parse(this.getAttribute("items"));
