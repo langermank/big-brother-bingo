@@ -1,40 +1,53 @@
-tr[role="row"] {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
-  gap: 0px 2px;
-  border-radius: var(--border-radius-large);
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  height: 100%;
+.BingoCard {
   position: relative;
   background: var(--borderColor-card);
   border-radius: var(--border-radius-large);
   box-shadow: var(--shadow-3);
-  container-name: bingocard;
-}
-
-td[role="gridcell"] {
-  aspect-ratio: 1;
   display: grid;
 }
 
-th {
+.BingoCard--header {
   text-align: center;
   padding-block-start: var(--card-border-padding);
 }
 
-tbody {
+.BingoCard-body {
   display: grid;
-  grid-template-rows: repeat(5, max-content);
-  grid-row-gap: 2px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
   padding: var(--card-border-padding);
 }
 
-.BingoCard--button {
+.BingoCard-cell {
+  aspect-ratio: 1;
+  display: grid;
+
+  &:first-of-type .BingoCard-cell--button {
+    border-top-left-radius: calc(
+      var(--border-radius-large) - var(--card-border-padding)
+    );
+  }
+
+  &:nth-of-type(5) .BingoCard-cell--button {
+    border-top-right-radius: calc(
+      var(--border-radius-large) - var(--card-border-padding)
+    );
+  }
+
+  &:nth-of-type(21) .BingoCard-cell--button {
+    border-bottom-left-radius: calc(
+      var(--border-radius-large) - var(--card-border-padding)
+    );
+  }
+
+  &:last-of-type .BingoCard-cell--button {
+    border-bottom-right-radius: calc(
+      var(--border-radius-large) - var(--card-border-padding)
+    );
+  }
+}
+
+.BingoCard-cell--button {
   padding: 0;
   height: 100%;
   width: 100%;
@@ -44,74 +57,41 @@ tbody {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   place-items: center;
-}
+  padding-inline: var(--padding-condensed);
 
-tr[role="row"]:first-of-type
-  td[role="gridcell"]:first-of-type
-  .BingoCard--button {
-  border-top-left-radius: calc(
-    var(--border-radius-large) - var(--card-border-padding)
-  );
-}
+  & .BingoCard--label {
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    color: var(--textColor-cardItem-rest);
+    font-size: var(--font-size-fluid-0);
+    line-height: var(--font-lineheight-1);
+  }
 
-tr[role="row"]:first-of-type
-  td[role="gridcell"]:last-of-type
-  .BingoCard--button {
-  border-top-right-radius: calc(
-    var(--border-radius-large) - var(--card-border-padding)
-  );
-}
+  &:focus-visible {
+    outline: solid 3px var(--outlineColor);
+    outline-offset: -6px;
+  }
 
-tr[role="row"]:last-of-type
-  td[role="gridcell"]:first-of-type
-  .BingoCard--button {
-  border-bottom-left-radius: calc(
-    var(--border-radius-large) - var(--card-border-padding)
-  );
-}
+  &[aria-pressed="true"] {
+    background-color: var(--bgColor-cardItem-pressed);
 
-tr[role="row"]:last-of-type
-  td[role="gridcell"]:last-of-type
-  .BingoCard--button {
-  border-bottom-right-radius: calc(
-    var(--border-radius-large) - var(--card-border-padding)
-  );
-}
-
-.BingoCard--button .BingoCard--label {
-  grid-row: 1/-1;
-  grid-column: 1/-1;
-  color: var(--textColor-cardItem-rest);
-  font-size: var(--font-size-fluid-0);
-  line-height: var(--font-lineheight-1);
-}
-
-.BingoCard--button:focus-visible {
-  outline: solid 3px var(--outlineColor);
-  outline-offset: -6px;
-}
-
-.BingoCard--button[aria-pressed="true"] {
-  background-color: var(--bgColor-cardItem-pressed);
-}
-
-.BingoCard--button[aria-pressed="true"]::after {
-  content: "";
-  background-color: var(--bgColor-chip);
-  box-shadow: 0px -3px 3px 0px rgba(0, 0, 0, 0.21) inset;
-  min-height: 50%;
-  min-width: 50%;
-  border-radius: var(--radius-round);
-  grid-row: 1/-1;
-  grid-column: 1/-1;
-  aspect-ratio: 1;
+    &::after {
+      content: "";
+      background-color: var(--bgColor-chip);
+      box-shadow: 0px -3px 3px 0px rgba(0, 0, 0, 0.21) inset;
+      min-height: 50%;
+      min-width: 50%;
+      border-radius: var(--radius-round);
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      aspect-ratio: 1;
+    }
+  }
 }
 
 .FreeSpace {
   padding-inline: var(--padding-condensed);
-}
 
-.FreeSpace {
   & .BingoCard--label {
     color: var(--textColor-freeSpace);
     grid-column: 1/-1;
@@ -119,21 +99,21 @@ tr[role="row"]:last-of-type
     font-weight: var(--font-weight-6);
     z-index: 1;
   }
-}
 
-.FreeSpace svg {
-  grid-column: 1/-1;
-  grid-row: 1/-1;
-  inline-size: 8rem;
-  fill: var(--bgColor-chip);
-  animation: var(--animation-spin);
-  animation-timing-function: var(--ease-elastic-3);
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-}
+  & svg {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    inline-size: 8rem;
+    fill: var(--bgColor-chip);
+    animation: var(--animation-spin);
+    animation-timing-function: var(--ease-elastic-3);
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+  }
 
-.FreeSpace::after {
-  display: none;
+  &::after {
+    display: none;
+  }
 }
 
 .FreeSpace--iconGroup {

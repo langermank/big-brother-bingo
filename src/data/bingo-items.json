@@ -1,152 +1,115 @@
 {
   "bingoItems": [
     {
-      "name": "Bingo Item 1",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says the name of an alliance"
     },
     {
-      "name": "Bingo Item 2",
-      "link": "../../public/favicon.svg"
+      "name": "Two or more kittens on screen"
     },
     {
-      "name": "Bingo Item 3",
-      "link": "../../public/favicon.svg"
+      "name": "Don’t talk about Production"
     },
     {
-      "name": "Bingo Item 4",
-      "link": "../../public/favicon.svg"
+      "name": "Shirtless dude"
     },
     {
-      "name": "Bingo Item 5",
-      "link": "../../public/favicon.svg"
+      "name": "Topic change when someone walks in"
     },
     {
-      "name": "Bingo Item 6",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says “Pawn”"
     },
     {
-      "name": "Bingo Item 7",
-      "link": "../../public/favicon.svg"
+      "name": "“No Singing”"
     },
     {
-      "name": "Bingo Item 8",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says “Backdoor”"
     },
     {
-      "name": "Bingo Item 9",
-      "link": "../../public/favicon.svg"
+      "name": "Conversation in the pantry"
     },
     {
-      "name": "Bingo Item 10",
-      "link": "../../public/favicon.svg"
+      "name": "Five or more people in the same shot"
     },
     {
-      "name": "Bingo Item 11",
-      "link": "../../public/favicon.svg"
+      "name": "Wearing sunglasses"
     },
     {
-      "name": "Bingo Item 12",
-      "link": "../../public/favicon.svg"
+      "name": "Eating"
     },
     {
-      "name": "Free Space",
-      "link": "../../public/favicon.svg"
+      "name": "Free Space"
     },
     {
-      "name": "Bingo Item 14",
-      "link": "../../public/favicon.svg"
+      "name": "Hand washing"
     },
     {
-      "name": "Bingo Item 15",
-      "link": "../../public/favicon.svg"
+      "name": "Yawning"
     },
     {
-      "name": "Bingo Item 16",
-      "link": "../../public/favicon.svg"
+      "name": "Someone goes upstairs"
     },
     {
-      "name": "Bingo Item 17",
-      "link": "../../public/favicon.svg"
+      "name": "Someone goes downstairs"
     },
     {
-      "name": "Bingo Item 18",
-      "link": "../../public/favicon.svg"
+      "name": "Someone is called to the DR"
     },
     {
-      "name": "Bingo Item 19",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says “HOH”"
     },
     {
-      "name": "Bingo Item 20",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says “Veto”"
     },
     {
-      "name": "Bingo Item 21",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says “House Meeting”"
     },
     {
-      "name": "Bingo Item 22",
-      "link": "../../public/favicon.svg"
+      "name": "Someone says “Alliance”"
     },
     {
-      "name": "Bingo Item 23",
-      "link": "../../public/favicon.svg"
+      "name": "Conversation in the HOH Room"
     },
     {
-      "name": "Bingo Item 24",
-      "link": "../../public/favicon.svg"
+      "name": "Someone names a former houseguest"
     },
     {
-      "name": "Bingo Item 25",
-      "link": "../../public/favicon.svg"
+      "name": "Someone talks about a past season"
     },
     {
-      "name": "Bingo Item 26",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 26"
     },
     {
-      "name": "Bingo Item 27",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 27"
     },
     {
-      "name": "Bingo Item 28",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 28"
     },
     {
-      "name": "Bingo Item 29",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 29"
     },
     {
-      "name": "Bingo Item 30",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 30"
     },
     {
-      "name": "Bingo Item 31",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 31"
     },
     {
-      "name": "Bingo Item 32",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 32"
     },
     {
-      "name": "Bingo Item 33",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 33"
     },
     {
-      "name": "Bingo Item 34",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 34"
     },
     {
-      "name": "Bingo Item 35",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 35"
     },
     {
-      "name": "Bingo Item 36",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 36"
     },
     {
-      "name": "Bingo Item 50",
-      "link": "../../public/favicon.svg"
+      "name": "Bingo Item 50"
     }
   ]
 }

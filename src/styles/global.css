@@ -242,12 +242,18 @@ body {
   display: grid;
   max-width: var(--container-md-768);
   margin-inline: auto;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
 }
 
 main {
   display: grid;
   gap: var(--gap-spacious);
   grid-auto-rows: min-content;
+}
+
+footer {
+  padding-block: var(--padding-spacious);
 }
 
 .icon::before {
