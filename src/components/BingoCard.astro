@@ -8,21 +8,20 @@ import "../styles/BingoCard.css";
 // This script runs at build time
 import data from "../data/pressure-cooker.json";
 
-// Randomly select 25 of the bingo items, ensuring the "free" item is included
 let bingoItems = [...data.bingoItems];
-const freeItemIndex = bingoItems.findIndex(
-  (item) => item.name === "Free Space"
-);
-const freeItem = bingoItems[freeItemIndex];
-bingoItems.splice(freeItemIndex, 1);
+// const freeItemIndex = bingoItems.findIndex(
+//   (item) => item.name === "Free Space"
+// );
+// const freeItem = bingoItems[freeItemIndex];
+// bingoItems.splice(freeItemIndex, 1);
 
-for (let i = bingoItems.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
-  [bingoItems[i], bingoItems[j]] = [bingoItems[j], bingoItems[i]];
-}
+// for (let i = bingoItems.length - 1; i > 0; i--) {
+//   const j = Math.floor(Math.random() * (i + 1));
+//   [bingoItems[i], bingoItems[j]] = [bingoItems[j], bingoItems[i]];
+// }
 
-bingoItems = bingoItems.slice(0, 24);
-bingoItems.splice(12, 0, freeItem);
+// bingoItems = bingoItems.slice(0, 24);
+// bingoItems.splice(12, 0, freeItem);
 ---
 
 <bingo-card items={JSON.stringify(bingoItems)} style="display: block;"
@@ -34,6 +33,7 @@ bingoItems.splice(12, 0, freeItem);
   class BingoCard extends HTMLElement {
     state: any[][];
     items: any;
+    shuffledItems: any;
     buttons: HTMLButtonElement[] = [];
     constructor() {
       super();
@@ -68,14 +68,17 @@ bingoItems.splice(12, 0, freeItem);
       );
       const items = this.getAttribute("items");
       this.items = items ? JSON.parse(items) : [];
-      // this.items = JSON.parse(this.getAttribute("items"));
+      this.shuffledItems = this.shuffleItems(this.items, 24);
+      this.shuffledItems.splice(12, 0, {
+        name: "Free Space",
+      });
       this.innerHTML = `
         <div class="BingoCard">
           <div class="BingoCard--header">
             <h1>Big Brother Bingo</h1>
           </div>
           <div class="BingoCard-body">
-            ${this.items
+            ${this.shuffledItems
               .map((item, index) => {
                 const id = item.name.toLowerCase().split(" ").join("-");
                 const freeSpace = index === 12;
@@ -149,6 +152,23 @@ bingoItems.splice(12, 0, freeItem);
           index === 12 ? true : this.state[Math.floor(index / 5)][index % 5]
         );
       });
+    }
+
+    shuffleItems(items, size) {
+      if (items.length < size)
+        throw new Error("Not enough unique items to create card");
+
+      const duplicatedItems = items.concat();
+      let shuffledItems = [];
+
+      while (shuffledItems.length < size) {
+        const randIndex = Math.floor(Math.random() * duplicatedItems.length);
+        shuffledItems = shuffledItems.concat(
+          duplicatedItems.splice(randIndex, 1)
+        );
+      }
+
+      return shuffledItems;
     }
 
     hasConfettiShown: boolean = false;
