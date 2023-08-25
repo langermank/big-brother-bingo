@@ -9,6 +9,14 @@
 .BingoCard--header {
   text-align: center;
   padding-block-start: var(--card-border-padding);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-transform: uppercase;
+  color: var(--textColor-card);
+  font-size: var(--font-size-fluid-2);
+  max-inline-size: unset;
+  font-family: var(--font-heading);
+  letter-spacing: 0.025em;
 }
 
 .BingoCard-body {

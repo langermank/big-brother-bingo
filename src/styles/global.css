@@ -127,11 +127,15 @@ body {
 }
 
 h1 {
-  color: var(--textColor-card);
-  font-size: var(--font-size-fluid-2);
-  max-inline-size: unset;
-  font-family: var(--font-heading);
-  letter-spacing: 0.025em;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
 
 ul {
